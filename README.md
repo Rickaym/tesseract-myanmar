@@ -1,22 +1,35 @@
 # Tesseract Myanmar
 
-Myanmar script အတွက် tesseract OCR ရဲ့ out of the box ပေးထားတဲ့ traineddata ဖိုင်ဟာ
+Myanmar Script အတွက် tesseract OCR ရဲ့ out of the box ပေးထားတဲ့ traineddata ဖိုင်ဟာ error rate အရမ်းများပါတယ်၊ အကြောင်းက
+- ( ၌၊ ၍၊ ၏၊ ၎) နှင့် (ပုဒ်ထီး၊ ပုဒ်မ) အက္ခရာတို့ မပါ
+- ဖွန့်အမျိုးအစားများစွာအတွက် training လုပ်ထားခြင်းမရှိ
+- training text ထဲမှာ zawgyi encoded စာတွေ ရောနှောနေတာတို့ကြောင့်ဖြစ်ပါသည်။
 
-- ( ၌၊ ၍၊ ၏၊ ၎) နှင့် (ပုဒ်ထီး၊ ပုဒ်မ) အက္ခရာတို့ မပါဘဲ ဖြစ်နေတာကြောင့်
-- ဖွန့်အမျိုးအစားများစွာအတွက် training မလုပ်ထားတာကြောင့်
-- training text ထဲမှာ zawgyi encoded စာတွေ ရောနှောနေတာကြောင့်
-
-error rate အရမ်းများပါတယ်။
-
-မြန်မာစာအတွက် OCR အမှန်ဆုံးလို့ ဆို့ရမယ့် Google Vision ရဲ့ OCR ကလည်း မြန်မာဝေါဟာရအတွက်ဘဲ အဆင်ပြေတယ်။ ပါဠိဝေါဟာရများအတွက် error rate အရမ်းများနေသေးတယ်။
-
-ပါဠိ၊ အဋ္ဌကထာ၊ ဋီကာ နိဿယများကို scan version မှ text version သို့ စွမ်းနိုင်သလောက် ပြောင်းထားဘို့ စိတ်ကူးပေါ်တုန်း tesseract OCR ရဲ့ myanmar script အတွက် trainneddata ဖိုင်ကို layer replacing နည်းဖြင့် fine tune လုပ်ပြီး စမ်းကြည့်တာ အတော်လေး ရလာဒ်ကောင်းမွန်တာမို့ ပြန်လည်ဝေမျှလိုက်ပါသည်။ error rate ကို ဇယားမှာ ကြည့်ပါ။
+မြန်မာစာအတွက် OCR အမှန်ဆုံးလို့ ဆို့ရမယ့် Google Vision ရဲ့ OCR ကလည်း မြန်မာဝေါဟာရအတွက်ဘဲ အဆင်ပြေတယ်။ ပါဠိဝေါဟာရများအတွက် error rate အရမ်းများနေသေးတယ်။ ပါဠိ၊ အဋ္ဌကထာ၊ ဋီကာ နိဿယများကို scan version မှ text version သို့ စွမ်းနိုင်သလောက် ပြောင်းထားဘို့ စိတ်ကူးပေါ်တုန်း tesseract OCR ရဲ့ myanmar script အတွက် trainneddata ဖိုင်ကို layer replacing နည်းဖြင့် fine tune လုပ်ပြီး စမ်းကြည့်တာ အတော်လေး ရလာဒ်ကောင်းမွန်တာမို့ ပြန်လည်ဝေမျှလိုက်ပါသည်။ error rate ကို ဇယားမှာ ကြည့်ပါ။
 
 မှတ်ချက်။ ။ accuracy အတော်ကောင်းပါသော်လည်း tesseract OCR ၏ text-line finding သည် ဗျည်းထက်၌ ရှိသော လုံးကြီးတင်၊ လုံးကြီးတင်ဆံခတ်၊ အသတ်စသည်တို့သည် ဗျည်းနှင့် မထိစပ်ဘဲ လွတ်နေသော စာလုံးဒီဇိုင်းမျိုးဖြစ်ပါက ထိုလုံးကြီးတင်စသည်တို့ကို လိုင်းတလိုင်းအနေဖြင့် ခွဲထုတ်သောကြောင့် အချို့သော မြန်မာဖွန့်ဒီဇိုင်းများအတွက် မမှန်ပါ။ (  အာရေဗျ၊ ဂျပန်၊ ဂျာမနီ စသည်တို့အတွက်လည်း မမှန်သေး၏ ဟု ဆိုကြ) ။
 
 tesseract ရဲ့ text line segmentation fail ဖြစ်တဲ့အခါမှာ သုံးလို့ရအောင် opencv + python သုံးပြီး text line segment script လေး စမ်းကြည့်ထားတယ်။ လိုအပ်တွေ အများကြီးပါ။ စာကြောင်းတွေ ထပ်နေရင် ( line spacing နည်းလွန်းရင်)၊ စာကြောင်းတွေ ကွေးနေရင် ( warp ဖြစ်နေရင် ) အဆင်မပြေပါဘူး။
 
-opencv-python နှင့် pytesseract package လိုတယ်။
+## အသုံးပြု့နည်း 
+
+<!-- https://saiashish90.medium.com/training-tesseract-ocr-with-custom-data-d3f4881575c0#:~:text=5,data%20and%20start%20from%20scratch -->
+
+၁. `tessdata` ဆိုသော directory ကိုရှာပါ၊ ဒီ directory တွင် Tesseract အသုံးပြုသည့် ဘာသာစကားဒေတာဖိုင်များ ကိုထားရှိသည်။.
+
+ဥပမာ
+1. /usr/local/share/tessdata/` or
+2. /usr/share/tesseract-ocr/4.00/tessdata/ on Linux, and
+3. C:\Program Files\Tesseract-OCR\tessdata\ on Windows 
+
+၂. `mya.traineddata` ဖိုင်ကို `tessdata` directory ထဲသို့ ရွှေ့ပြောင်းပါ
+
+၃. Tesseract ကိုအသုံးပြု့သောအခါ၊ "-l" သို့မဟုတ် "--lang" option ဖြင့် language "mya" ဆိုပြီးပေးပါ။
+
+ဥပမာ
+```
+tesseract input.png output -l mya
+```
 
 ## Error Rates
 
